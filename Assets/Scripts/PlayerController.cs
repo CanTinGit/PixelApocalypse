@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float speed;
+    public GameObject bulletOriginal;
 	// Use this for initialization
 	void Start () {
 		
@@ -34,6 +35,28 @@ public class PlayerController : MonoBehaviour {
         {
             this.transform.position += new Vector3(speed * Time.deltaTime, 0.0f);
         }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            GameObject bullet = Instantiate(bulletOriginal, transform.position, Quaternion.identity);
+            bullet.GetComponent<Bullet>().direction = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            GameObject bullet = Instantiate(bulletOriginal, transform.position, Quaternion.identity);
+            bullet.GetComponent<Bullet>().direction = 2;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            GameObject bullet = Instantiate(bulletOriginal, transform.position, Quaternion.identity);
+            bullet.GetComponent<Bullet>().direction = 3;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            GameObject bullet = Instantiate(bulletOriginal, transform.position, Quaternion.identity);
+            bullet.GetComponent<Bullet>().direction = 4;
+        }
+
 
     }
 }
