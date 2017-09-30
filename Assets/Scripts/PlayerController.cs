@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -17,11 +18,20 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject[] hearts;
     public int playerHealth = 3;
-    public GameObject current;
+    public GameObject currentHeart;
+
+    public float ultraCoolDown = 5.0f;
+    public GameObject[] ultras;
+    public GameObject currentUltra;
+    public int ultraNum = 3;
+    public float coolDown = 5.0f;
+    public GameObject fillingUltra;
+    public GameObject ultraSlider;
     // Use this for initialization
     void Start ()
     {
-        current = hearts[playerHealth - 1];
+        currentHeart = hearts[playerHealth - 1];
+        currentUltra = ultras[2];
     }
 	
 	// Update is called once per frame
@@ -32,6 +42,8 @@ public class PlayerController : MonoBehaviour {
             return;
         }
         Move();
+
+        #region normal or ultra
         if (Input.GetKeyDown(KeyCode.R))
         {
             changeShootStyle(ref isUltra);
@@ -44,11 +56,25 @@ public class PlayerController : MonoBehaviour {
         {
             NormalShoot();
         }
+        #endregion
 
-        if (playerHealth <= 0)
+        if (ultraNum == 3)
         {
-            Dead();
+            ultraCoolDown = coolDown;
         }
+        else if (ultraNum == 2)
+        {
+            FillUltraUI(2);
+        }
+        else if (ultraNum == 1)
+        {
+            FillUltraUI(1);
+        }
+        else
+        {
+            FillUltraUI(0);
+        }
+
     }
 
     void Move()
@@ -102,26 +128,31 @@ public class PlayerController : MonoBehaviour {
 
     void UltraShoot()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && ultraNum > 0)
         {
             GameObject bullet = Instantiate(ultraBullet, transform.position, Quaternion.identity);
             bullet.GetComponent<Bullet>().direction = 1;
+            ChangeUltraUI();
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) && ultraNum > 0)
         {
             GameObject bullet = Instantiate(ultraBullet, transform.position, Quaternion.identity);
             bullet.GetComponent<Bullet>().direction = 2;
+            ChangeUltraUI();
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && ultraNum > 0)
         {
             GameObject bullet = Instantiate(ultraBullet, transform.position, Quaternion.identity);
             bullet.GetComponent<Bullet>().direction = 3;
+            ChangeUltraUI();
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) && ultraNum > 0)
         {
             GameObject bullet = Instantiate(ultraBullet, transform.position, Quaternion.identity);
             bullet.GetComponent<Bullet>().direction = 4;
+            ChangeUltraUI();
         }
+        
     }
 
     public void TakeDamage(int loss, Vector3 backDirection)
@@ -130,9 +161,8 @@ public class PlayerController : MonoBehaviour {
         isBack = true;
         GetComponent<Rigidbody2D>().velocity = backDirection;
         Invoke("Stop", backTime);
-        current.SetActive(false);
-        playerHealth--;
-        current = hearts[playerHealth - 1];
+
+        ChangeHealthUI();
         
     }
 
@@ -159,5 +189,39 @@ public class PlayerController : MonoBehaviour {
     void Dead()
     {
         Application.LoadLevel("Start");
+    }
+
+    void ChangeHealthUI()
+    {
+        currentHeart.SetActive(false);
+        if (playerHealth >= 2)
+        {
+            playerHealth--;
+            currentHeart = hearts[playerHealth - 1];
+        }
+        else
+        {
+            Dead();
+        }
+    }
+    void FillUltraUI(int i)
+    {
+        ultraCoolDown -= Time.deltaTime;
+        ultraSlider.GetComponent<Slider>().value = coolDown - ultraCoolDown;
+        if (ultraCoolDown <= 0)
+        {
+
+            fillingUltra = ultras[i];
+            fillingUltra.SetActive(true);
+            ultraCoolDown = coolDown;
+            ultraNum++;
+            currentUltra = ultras[i];
+        }
+    }
+    void ChangeUltraUI()
+    {
+        currentUltra.SetActive(false);
+        ultraNum--;
+        currentUltra = ultras[ultraNum - 1];
     }
 }
