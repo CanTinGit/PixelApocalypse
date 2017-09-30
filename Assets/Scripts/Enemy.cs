@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour {
     public int health;
     public int attack;
     public float force;
+    public bool canBeDestory = false;
 	
     void Awake()
     {
@@ -25,6 +26,15 @@ public class Enemy : MonoBehaviour {
     {
         health -= loss;
         if (health <= 0)
+        {
+            canBeDestory = true;
+            //Change image
+        }
+    }
+    
+    public void DestoryEnemy()
+    {
+        if (canBeDestory)
         {
             GameManager.instance.enemyCount--;
             Destroy(gameObject);

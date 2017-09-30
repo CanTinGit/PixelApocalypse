@@ -293,6 +293,12 @@ Prefab:
       propertyPath: backTime
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114061199216627324, guid: f0fb8310145885d499b11adbe5881775,
+        type: 2}
+      propertyPath: normalBullet
+      value: 
+      objectReference: {fileID: 1406771603095896, guid: f64786df478c50f4aa82b1da08f2f176,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0fb8310145885d499b11adbe5881775, type: 2}
   m_IsPrefabParent: 0
@@ -413,7 +419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1590951063
 MonoBehaviour:
   m_ObjectHideFlags: 0
