@@ -32,12 +32,12 @@ public class Enemy : MonoBehaviour {
         if (health <= 0)
         {
             canBeDestory = true;
-            for (int i = 0; i < changedGround.Count; i++)
-            {
-                changedGround[i].GetComponent<Ground>().ChangeToOriginal();
-            }
-            GameManager.instance.enemyCount--;
-            Destroy(gameObject);
+            //for (int i = 0; i < changedGround.Count; i++)
+            //{
+            //    changedGround[i].GetComponent<Ground>().ChangeToOriginal();
+            //}
+            //GameManager.instance.enemyCount--;
+            //Destroy(gameObject);
         }
     }
     

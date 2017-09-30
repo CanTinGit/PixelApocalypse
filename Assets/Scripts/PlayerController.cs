@@ -8,7 +8,10 @@ public class PlayerController : MonoBehaviour {
 
     public float speed;
     public GameObject normalBullet;
-    public GameObject ultraBullet;
+    public GameObject ultraBulletUp;
+    public GameObject ultraBulletDown;
+    public GameObject ultraBulletLeft;
+    public GameObject ultraBulletRight;
     public int health;
     public float backspeed;
     public Vector3 force;
@@ -20,7 +23,7 @@ public class PlayerController : MonoBehaviour {
     public int playerHealth = 3;
     public GameObject currentHeart;
 
-    public float ultraCoolDown = 5.0f;
+    private float ultraCoolDown = 5.0f;
     public GameObject[] ultras;
     public GameObject currentUltra;
     public int ultraNum = 3;
@@ -130,26 +133,26 @@ public class PlayerController : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && ultraNum > 0)
         {
-            GameObject bullet = Instantiate(ultraBullet, transform.position, Quaternion.identity);
-            bullet.GetComponent<Bullet>().direction = 1;
+            GameObject bullet = Instantiate(ultraBulletUp, transform.position, Quaternion.identity);
+            bullet.GetComponent<UltraBullet>().direction = 1;
             ChangeUltraUI();
         }
         if (Input.GetKeyDown(KeyCode.DownArrow) && ultraNum > 0)
         {
-            GameObject bullet = Instantiate(ultraBullet, transform.position, Quaternion.identity);
-            bullet.GetComponent<Bullet>().direction = 2;
+            GameObject bullet = Instantiate(ultraBulletDown, transform.position, Quaternion.identity);
+            bullet.GetComponent<UltraBullet>().direction = 2;
             ChangeUltraUI();
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) && ultraNum > 0)
         {
-            GameObject bullet = Instantiate(ultraBullet, transform.position, Quaternion.identity);
-            bullet.GetComponent<Bullet>().direction = 3;
+            GameObject bullet = Instantiate(ultraBulletLeft, transform.position, Quaternion.identity);
+            bullet.GetComponent<UltraBullet>().direction = 3;
             ChangeUltraUI();
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) && ultraNum > 0)
         {
-            GameObject bullet = Instantiate(ultraBullet, transform.position, Quaternion.identity);
-            bullet.GetComponent<Bullet>().direction = 4;
+            GameObject bullet = Instantiate(ultraBulletRight, transform.position, Quaternion.identity);
+            bullet.GetComponent<UltraBullet>().direction = 4;
             ChangeUltraUI();
         }
         

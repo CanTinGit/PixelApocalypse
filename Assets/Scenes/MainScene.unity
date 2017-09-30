@@ -289,9 +289,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 5
+  m_MaxValue: 20
   m_WholeNumbers: 0
-  m_Value: 5
+  m_Value: 20
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -974,13 +974,42 @@ Prefab:
         type: 2}
       propertyPath: ultraBullet
       value: 
-      objectReference: {fileID: 1406771603095896, guid: f64786df478c50f4aa82b1da08f2f176,
+      objectReference: {fileID: 1902382922094498, guid: 78c0f45605fbc5149a2a7044b81f5d2c,
         type: 2}
     - target: {fileID: 114061199216627324, guid: f0fb8310145885d499b11adbe5881775,
         type: 2}
       propertyPath: ultraSlider
       value: 
       objectReference: {fileID: 147785077}
+    - target: {fileID: 114061199216627324, guid: f0fb8310145885d499b11adbe5881775,
+        type: 2}
+      propertyPath: ultraBulletUp
+      value: 
+      objectReference: {fileID: 1902382922094498, guid: 28aa2203e2316aa4190133c4dea85fef,
+        type: 2}
+    - target: {fileID: 114061199216627324, guid: f0fb8310145885d499b11adbe5881775,
+        type: 2}
+      propertyPath: ultraBulletRight
+      value: 
+      objectReference: {fileID: 1902382922094498, guid: 42f9257efcc89a24892696c27d2cceb5,
+        type: 2}
+    - target: {fileID: 114061199216627324, guid: f0fb8310145885d499b11adbe5881775,
+        type: 2}
+      propertyPath: ultraBulletLeft
+      value: 
+      objectReference: {fileID: 1902382922094498, guid: 78c0f45605fbc5149a2a7044b81f5d2c,
+        type: 2}
+    - target: {fileID: 114061199216627324, guid: f0fb8310145885d499b11adbe5881775,
+        type: 2}
+      propertyPath: ultraBulletDown
+      value: 
+      objectReference: {fileID: 1902382922094498, guid: df206d8604453bb44a276f62e37f8b8e,
+        type: 2}
+    - target: {fileID: 114061199216627324, guid: f0fb8310145885d499b11adbe5881775,
+        type: 2}
+      propertyPath: coolDown
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0fb8310145885d499b11adbe5881775, type: 2}
   m_IsPrefabParent: 0
