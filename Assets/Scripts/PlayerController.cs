@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -13,9 +14,14 @@ public class PlayerController : MonoBehaviour {
     public float backTime;
     bool isBack = false;
     public bool isUltra = false;
+
+    public GameObject[] hearts;
+    public int playerHealth = 3;
+    public GameObject current;
     // Use this for initialization
     void Start ()
     {
+        current = hearts[playerHealth - 1];
     }
 	
 	// Update is called once per frame
@@ -38,7 +44,11 @@ public class PlayerController : MonoBehaviour {
         {
             NormalShoot();
         }
-        
+
+        if (playerHealth <= 0)
+        {
+            Dead();
+        }
     }
 
     void Move()
@@ -120,6 +130,10 @@ public class PlayerController : MonoBehaviour {
         isBack = true;
         GetComponent<Rigidbody2D>().velocity = backDirection;
         Invoke("Stop", backTime);
+        current.SetActive(false);
+        playerHealth--;
+        current = hearts[playerHealth - 1];
+        
     }
 
     void Stop()
@@ -141,5 +155,9 @@ public class PlayerController : MonoBehaviour {
             isUltra = true;
             //
         }
+    }
+    void Dead()
+    {
+        Application.LoadLevel("Start");
     }
 }
