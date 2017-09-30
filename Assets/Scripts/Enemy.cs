@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour {
     public GameObject player;
     public float speed;
     public int health;
+    public int attack;
+    public float force;
 	
     void Awake()
     {
@@ -16,7 +18,6 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
     }
 
@@ -24,6 +25,18 @@ public class Enemy : MonoBehaviour {
     {
         health -= loss;
         if (health <= 0)
+        {
+            GameManager.instance.enemyCount--;
             Destroy(gameObject);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            Vector3 backDirection = (player.transform.position - transform.position).normalized * force;
+            player.GetComponent<PlayerController>().TakeDamage(attack,backDirection);
+        }
     }
 }
