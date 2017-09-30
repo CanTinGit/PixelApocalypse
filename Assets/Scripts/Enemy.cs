@@ -10,10 +10,14 @@ public class Enemy : MonoBehaviour {
     public int attack;
     public float force;
     public bool canBeDestory = false;
-	
+
+
+    public List<GameObject> changedGround = new List<GameObject>();
+
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        changedGround.Clear();
     }
 
 	// Update is called once per frame
@@ -28,7 +32,12 @@ public class Enemy : MonoBehaviour {
         if (health <= 0)
         {
             canBeDestory = true;
-            //Change image
+            for (int i = 0; i < changedGround.Count; i++)
+            {
+                changedGround[i].GetComponent<Ground>().ChangeToOriginal();
+            }
+            GameManager.instance.enemyCount--;
+            Destroy(gameObject);
         }
     }
     
@@ -36,9 +45,18 @@ public class Enemy : MonoBehaviour {
     {
         if (canBeDestory)
         {
+            for(int i = 0; i < changedGround.Count; i++)
+            {
+                changedGround[i].GetComponent<Ground>().ChangeToOriginal();
+            }
             GameManager.instance.enemyCount--;
             Destroy(gameObject);
         }
+    }
+
+    public void ChangeGround(GameObject ground)
+    {
+        changedGround.Add(ground);
     }
 
     void OnCollisionEnter2D(Collision2D other)
