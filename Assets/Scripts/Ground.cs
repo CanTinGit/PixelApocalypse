@@ -9,7 +9,7 @@ public class Ground : MonoBehaviour {
     public Sprite originalGround;
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (isChanged == false && other.tag == "Enemy")
+        if (isChanged == false && other.tag == "Enemy" && other.gameObject.GetComponent<Enemy>().canBeDestory == false)
         {
             other.GetComponent<Enemy>().ChangeGround(gameObject);
             ChangeToEnemy();
