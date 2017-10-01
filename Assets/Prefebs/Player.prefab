@@ -23,7 +23,11 @@ GameObject:
   - component: {fileID: 50247820568780706}
   - component: {fileID: 61633827382551308}
   - component: {fileID: 114061199216627324}
+<<<<<<< HEAD
   - component: {fileID: 95269600576876204}
+=======
+  - component: {fileID: 82589684692318054}
+>>>>>>> remotes/origin/audio
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -39,7 +43,11 @@ Transform:
   m_GameObject: {fileID: 1788240354359756}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 24.12, y: 9.65, z: 0}
+<<<<<<< HEAD
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+=======
+  m_LocalScale: {x: 5, y: 5, z: 5}
+>>>>>>> remotes/origin/audio
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -89,14 +97,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+<<<<<<< HEAD
 --- !u!95 &95269600576876204
 Animator:
   serializedVersion: 3
+=======
+--- !u!82 &82589684692318054
+AudioSource:
+>>>>>>> remotes/origin/audio
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1788240354359756}
   m_Enabled: 1
+<<<<<<< HEAD
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 13928d40aeac89e4080b5b99c44377e5, type: 2}
   m_CullingMode: 0
@@ -106,6 +120,81 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+=======
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ffb38c12c47c8384fb44ba63f4c0493c, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.427
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+>>>>>>> remotes/origin/audio
 --- !u!114 &114061199216627324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -118,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+<<<<<<< HEAD
   normalBulletUp: {fileID: 1406771603095896, guid: f64786df478c50f4aa82b1da08f2f176,
     type: 2}
   normalBulletDown: {fileID: 1157875992692664, guid: 34ad62dca70fedc4ca3edd0898546b34,
@@ -125,6 +215,9 @@ MonoBehaviour:
   normalBulletLeft: {fileID: 1166072664543182, guid: 42be39c80c2d6a2439e1b6a7e71ad61d,
     type: 2}
   normalBulletRight: {fileID: 1961554884422170, guid: aac5c2aa786fee947a5df87f253ced62,
+=======
+  normalBullet: {fileID: 1406771603095896, guid: f64786df478c50f4aa82b1da08f2f176,
+>>>>>>> remotes/origin/audio
     type: 2}
   ultraBulletUp: {fileID: 1902382922094498, guid: 28aa2203e2316aa4190133c4dea85fef,
     type: 2}

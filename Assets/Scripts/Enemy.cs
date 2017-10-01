@@ -10,9 +10,12 @@ public class Enemy : MonoBehaviour {
     public int attack;
     public float force;
     public bool canBeDestory = false;
+<<<<<<< HEAD
     public bool isPixel = false;
     public Sprite pixel;
     public Vector3 scale;
+=======
+>>>>>>> remotes/origin/audio
 
     public List<GameObject> changedGround = new List<GameObject>();
 
@@ -55,6 +58,7 @@ public class Enemy : MonoBehaviour {
             }
             GameManager.instance.enemyCount--;
             Destroy(gameObject);
+            player.GetComponents<AudioSource>()[1].Play();
         }
     }
 

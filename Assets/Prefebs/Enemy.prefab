@@ -123,9 +123,12 @@ MonoBehaviour:
   attack: 0
   force: 7
   canBeDestory: 0
+<<<<<<< HEAD
   isPixel: 0
   pixel: {fileID: 21300000, guid: 872317ce69c5fbe4491efa3b4c2fe7fa, type: 3}
   scale: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> remotes/origin/audio
   changedGround: []
 --- !u!212 &212488213457353616
 SpriteRenderer:

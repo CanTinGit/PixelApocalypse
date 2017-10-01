@@ -5,8 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+<<<<<<< HEAD
   - GameManager
   - Wall
+=======
+  - TutorialEnemy
+>>>>>>> remotes/origin/audio
   layers:
   - Default
   - TransparentFX

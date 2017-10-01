@@ -35,13 +35,18 @@ public class PlayerController : MonoBehaviour {
     public GameObject fillingUltra;
     public GameObject ultraSlider;
 
+<<<<<<< HEAD
     private Animator animator;
+=======
+    AudioSource[] audioSource;
+>>>>>>> remotes/origin/audio
     // Use this for initialization
     void Start ()
     {
         animator = GetComponent<Animator>();
         currentHeart = hearts[playerHealth - 1];
         currentUltra = ultras[2];
+        audioSource = GetComponents<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -186,6 +191,7 @@ public class PlayerController : MonoBehaviour {
         isBack = true;
         GetComponent<Rigidbody2D>().velocity = backDirection;
         Invoke("Stop", backTime);
+        audioSource[0].Play();
 
         ChangeHealthUI();
         
