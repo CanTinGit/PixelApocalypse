@@ -47,7 +47,6 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < objectCount; i++)
         {
             Vector3 randomPosition = RandomPosition();
-            Debug.Log(level);
             if (level == 1)
             {
                 GameObject tileChoice = enemy;
