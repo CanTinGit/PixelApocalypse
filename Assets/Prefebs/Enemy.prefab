@@ -104,6 +104,8 @@ MonoBehaviour:
   health: 30
   attack: 0
   force: 7
+  canBeDestory: 0
+  changedGround: []
 --- !u!212 &212488213457353616
 SpriteRenderer:
   m_ObjectHideFlags: 1

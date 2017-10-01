@@ -45,5 +45,9 @@ public class UltraBullet : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+        if (other.gameObject.tag == "TutorialEnemy")
+        {
+            other.gameObject.GetComponent<TutorialEnemy>().DestoryEnemy();
+        }
     }
 }

@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour {
     public float force;
     public bool canBeDestory = false;
 
-
     public List<GameObject> changedGround = new List<GameObject>();
 
     void Awake()
@@ -51,6 +50,7 @@ public class Enemy : MonoBehaviour {
             }
             GameManager.instance.enemyCount--;
             Destroy(gameObject);
+            player.GetComponents<AudioSource>()[1].Play();
         }
     }
 
