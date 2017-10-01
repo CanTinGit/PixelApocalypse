@@ -1194,7 +1194,7 @@ GameObject:
   - component: {fileID: 1590951063}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1230,7 +1230,7 @@ MonoBehaviour:
   columns: 40
   rows: 20
   enemyTiles:
-  - {fileID: 1975614663736364, guid: c383a220fe6c48642b2d5251d070297e, type: 2}
+  - {fileID: 1144097050198144, guid: 877d1f26736fe1e4eb69849314470156, type: 2}
 --- !u!4 &1590951065
 Transform:
   m_ObjectHideFlags: 0
