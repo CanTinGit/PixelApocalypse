@@ -50,5 +50,10 @@ public class Bullet : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+        if (other.gameObject.tag == "TutorialEnemy")
+        {
+            other.gameObject.GetComponent<TutorialEnemy>().TakeDamage(damage);
+            Destroy(this.gameObject);
+        }
     }
 }

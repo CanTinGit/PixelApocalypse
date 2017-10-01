@@ -44,9 +44,9 @@ public class TutorialEnemy : MonoBehaviour {
             {
                 changedGround[i].GetComponent<Ground>().ChangeToOriginal();
             }
-           // GameManager.instance.enemyCount--;
-            Destroy(gameObject);
+            // GameManager.instance.enemyCount--;
             player.GetComponents<AudioSource>()[1].Play();
+            Destroy(gameObject);
         }
     }
 
@@ -61,6 +61,7 @@ public class TutorialEnemy : MonoBehaviour {
         {
             Vector3 backDirection = (player.transform.position - transform.position).normalized * force;
             player.GetComponent<PlayerController>().TakeDamage(attack,backDirection);
+            player.GetComponents<AudioSource>()[0].Play();
         }
     }
 }

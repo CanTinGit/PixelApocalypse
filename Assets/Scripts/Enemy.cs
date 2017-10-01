@@ -42,7 +42,9 @@ public class Enemy : MonoBehaviour {
             canBeDestory = true;
             gameObject.GetComponent<SpriteRenderer>().sprite = pixel;
             gameObject.GetComponent<Animator>().enabled = false;
+            
         }
+        
     }
     
     public void DestoryEnemy()
@@ -54,6 +56,7 @@ public class Enemy : MonoBehaviour {
                 changedGround[i].GetComponent<Ground>().ChangeToOriginal();
             }
             GameManager.instance.enemyCount--;
+            player.GetComponents<AudioSource>()[1].Play();
             Destroy(gameObject);
         }
     }
@@ -70,6 +73,7 @@ public class Enemy : MonoBehaviour {
         {
             Vector3 backDirection = (player.transform.position - transform.position).normalized * force;
             player.GetComponent<PlayerController>().TakeDamage(attack,backDirection);
+            player.GetComponents<AudioSource>()[0].Play();  
         }
     }
 }
