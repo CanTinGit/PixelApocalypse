@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WanderEnemy : MonoBehaviour {
+public class WanderEnemy : Enemy {
 
     public int columns, rows;
     public int mapColumns, mapRows;
@@ -39,12 +39,10 @@ public class WanderEnemy : MonoBehaviour {
         {
             if(x > 0 && x < mapColumns)
             {
-                Debug.Log(x);
                 for (int y = enemyY - rows; y < enemyY + rows + 1; y++)
                 {
                     if(y > 0 && y < mapRows)
                     {
-                        Debug.Log(y);
                         gridPositions.Add(new Vector3(x, y, 0.0f));
                     }
 
