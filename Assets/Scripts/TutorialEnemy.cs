@@ -11,18 +11,26 @@ public class TutorialEnemy : MonoBehaviour {
     public int attack;
     public float force;
     public bool canBeDestory = false;
+    public bool isPixel = false;
+    public Sprite pixel;
+    public Vector3 scale;
 
     public List<GameObject> changedGround = new List<GameObject>();
 
     void Awake()
     {
+        scale = transform.localScale;
         player = GameObject.FindGameObjectWithTag("Player");
         changedGround.Clear();
     }
 
-	// Update is called once per frame
-	void Update ()
+    // Update is called once per frame
+    void Update()
     {
+        if (transform.position.x < player.transform.position.x)
+            transform.localScale = new Vector3(scale.x, scale.y);
+        if (transform.position.x > player.transform.position.x)
+            transform.localScale = new Vector3(-scale.x, scale.y);
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
     }
 
@@ -31,36 +39,43 @@ public class TutorialEnemy : MonoBehaviour {
         health -= loss;
         if (health <= 0)
         {
+            isPixel = true;
             canBeDestory = true;
+            gameObject.GetComponent<SpriteRenderer>().sprite = pixel;
+            gameObject.GetComponent<Animator>().enabled = false;
+
         }
+
     }
-    
+
     public void DestoryEnemy()
     {
         if (canBeDestory)
         {
-            Application.LoadLevel("MainScene");
             for (int i = 0; i < changedGround.Count; i++)
             {
                 changedGround[i].GetComponent<Ground>().ChangeToOriginal();
             }
-            // GameManager.instance.enemyCount--;
+           // GameManager.instance.enemyCount--;
             player.GetComponents<AudioSource>()[1].Play();
+            player.GetComponent<PlayerController>().ultraCoolDown -= 1;
             Destroy(gameObject);
+            Application.LoadLevel("MainScene");
         }
     }
 
     public void ChangeGround(GameObject ground)
     {
-        changedGround.Add(ground);
+        if (!isPixel)
+            changedGround.Add(ground);
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             Vector3 backDirection = (player.transform.position - transform.position).normalized * force;
-            player.GetComponent<PlayerController>().TakeDamage(attack,backDirection);
+            player.GetComponent<PlayerController>().TakeDamage(attack, backDirection);
             player.GetComponents<AudioSource>()[0].Play();
         }
     }

@@ -9,7 +9,10 @@ public class UltraBullet : MonoBehaviour {
 
     float step;
     
-
+    void Start()
+    {
+        Destroy(gameObject, 10.0f);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -41,10 +44,6 @@ public class UltraBullet : MonoBehaviour {
             other.gameObject.GetComponent<Enemy>().DestoryEnemy();
         }
 
-        if (other.gameObject.tag == "Wall")
-        {
-            Destroy(this.gameObject);
-        }
         if (other.gameObject.tag == "TutorialEnemy")
         {
             other.gameObject.GetComponent<TutorialEnemy>().DestoryEnemy();

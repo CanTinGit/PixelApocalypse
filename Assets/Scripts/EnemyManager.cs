@@ -12,6 +12,8 @@ public class EnemyManager : MonoBehaviour
     public GameObject player;
     private List<Vector3> gridPositions = new List<Vector3>();
     public GameObject enemy;
+    public GameObject wanderEnemy;
+
 
     void Awake()
     {
@@ -44,18 +46,28 @@ public class EnemyManager : MonoBehaviour
     int LayoutObjectAtRandom(GameObject[] tileArray, int minimum, int maximum, int level)
     {
         int objectCount = Random.Range(minimum, maximum + 1);
+
         for (int i = 0; i < objectCount; i++)
         {
             Vector3 randomPosition = RandomPosition();
+            int portion = Random.Range(0, 10);
+            GameObject tileChoice;
             if (level == 1)
             {
-                GameObject tileChoice = enemy;
+                tileChoice = enemy;
                 Instantiate(tileChoice, randomPosition, Quaternion.identity);
             }
             else
             {
-
-                GameObject tileChoice = tileArray[Random.Range(0, tileArray.Length)];
+                if(portion < 2)
+                {
+                    tileChoice = wanderEnemy;
+                }
+                else
+                {
+                    tileChoice = enemy;
+                }
+                
                 Instantiate(tileChoice, randomPosition, Quaternion.identity);
             }  
         }
@@ -65,6 +77,6 @@ public class EnemyManager : MonoBehaviour
     public void InitEnemy(int minEnemyCount, int maxEnemyCount, int level)
     {
         InitialiseList();            
-        GameManager.instance.enemyCount =  LayoutObjectAtRandom(enemyTiles, minEnemyCount, maxEnemyCount, level);
+        GameManager.instance.enemyCount +=  LayoutObjectAtRandom(enemyTiles, minEnemyCount, maxEnemyCount, level);
     }
 }

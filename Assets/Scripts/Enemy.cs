@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour
+{
 
     public GameObject player;
     public float speed;
@@ -57,6 +58,7 @@ public class Enemy : MonoBehaviour {
             }
             GameManager.instance.enemyCount--;
             player.GetComponents<AudioSource>()[1].Play();
+            player.GetComponent<PlayerController>().ultraCoolDown -= 1;
             Destroy(gameObject);
         }
     }

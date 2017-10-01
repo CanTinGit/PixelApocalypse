@@ -131,9 +131,9 @@ MonoBehaviour:
   rows: 2
   mapColumns: 0
   mapRows: 0
-  speed: 0.02
   isArrive: 1
-  player: {fileID: 0}
+  wanderTime: 0
+  setTime: 5
 --- !u!212 &212983327528900594
 SpriteRenderer:
   m_ObjectHideFlags: 1

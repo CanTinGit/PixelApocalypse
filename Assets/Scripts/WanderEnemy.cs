@@ -7,13 +7,14 @@ public class WanderEnemy : Enemy {
     public int columns, rows;
     public int mapColumns, mapRows;
     private Vector3 target;
-    public float speed;
     public bool isArrive = true;
-    public GameObject player;
+    public float wanderTime;
+    public float setTime;
 
     private List<Vector3> gridPositions = new List<Vector3>();
 
     void Awake () {
+        wanderTime = setTime;
         mapColumns = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>().columns;
         mapRows = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>().rows;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -21,6 +22,7 @@ public class WanderEnemy : Enemy {
 
     void Update()
     {
+        wanderTime -= Time.deltaTime;
         if (isArrive)
         {
             InitialiseList((int)transform.position.x, (int)transform.position.y);
@@ -32,8 +34,13 @@ public class WanderEnemy : Enemy {
             isArrive = false;
         }
         transform.position = Vector3.MoveTowards(transform.position, target, speed);
-        if (transform.position == target)
+        if (transform.position == target || wanderTime <= 0)
+        {
             isArrive = true;
+            wanderTime = setTime;
+
+        }
+            
     }
 
     // Update is called once per frame
@@ -41,11 +48,11 @@ public class WanderEnemy : Enemy {
     {
         gridPositions.Clear();
 
-        for (int x = enemyX - columns; x < enemyX + columns + 1; x++)
+        for (int x = enemyX - columns + 1; x < enemyX + columns; x++)
         {
             if(x > 0 && x < mapColumns)
             {
-                for (int y = enemyY - rows; y < enemyY + rows + 1; y++)
+                for (int y = enemyY - rows + 1; y < enemyY + rows; y++)
                 {
                     if(y > 0 && y < mapRows)
                     {

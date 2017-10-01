@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     private Transform boardHolder;
     float time;
     public float waveTime;
+    public Text textTime;
 
     void BoardSetup()
     {
@@ -50,7 +52,7 @@ public class GameManager : MonoBehaviour
 
     void Awake ()
     {
-        waveTime = -5;
+        waveTime = 0;
         time = waveTime;
         instance = this;
         enemyManager = GetComponent<EnemyManager>();
@@ -64,7 +66,8 @@ public class GameManager : MonoBehaviour
 	void Update ()
     {
         time -= Time.deltaTime;
-        if(enemyCount <= 0 || time <= 0)
+        textTime.text = "Next Wave : " + (int)time;
+        if (enemyCount <= 0 || time <= 0)
         {
             enemyManager.InitEnemy(minEnemyCount, maxEnemyCount, level);
             LevelUp();
@@ -75,7 +78,7 @@ public class GameManager : MonoBehaviour
     {
         minEnemyCount += 1;
         maxEnemyCount += 3  ;
-        waveTime += 10;
+        waveTime += 8;
         time = waveTime;
         level++;
     }

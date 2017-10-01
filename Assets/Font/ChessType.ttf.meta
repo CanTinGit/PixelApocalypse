@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 68b009cadadad8d4e9e945fa6487e3a1
+timeCreated: 1506888425
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: ChessType
+  fontNames:
+  - ChessType
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

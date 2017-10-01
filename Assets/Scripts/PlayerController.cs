@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
     public int playerHealth = 3;
     public GameObject currentHeart;
 
-    private float ultraCoolDown = 5.0f;
+    public float ultraCoolDown = 5.0f;
     public GameObject[] ultras;
     public GameObject currentUltra;
     public int ultraNum = 3;
@@ -249,4 +249,6 @@ public class PlayerController : MonoBehaviour {
         ultraNum--;
         currentUltra = ultras[ultraNum - 1];
     }
+
+    
 }
