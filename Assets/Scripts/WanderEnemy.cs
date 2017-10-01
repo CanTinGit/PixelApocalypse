@@ -9,12 +9,14 @@ public class WanderEnemy : Enemy {
     private Vector3 target;
     public float speed;
     public bool isArrive = true;
+    public GameObject player;
 
     private List<Vector3> gridPositions = new List<Vector3>();
 
     void Awake () {
         mapColumns = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>().columns;
         mapRows = GameObject.FindGameObjectWithTag("GameManager").GetComponent<EnemyManager>().rows;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
@@ -23,6 +25,10 @@ public class WanderEnemy : Enemy {
         {
             InitialiseList((int)transform.position.x, (int)transform.position.y);
             target = RandomPosition();
+            if (transform.position.x < target.x)
+                transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            if (transform.position.x > target.x)
+                transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
             isArrive = false;
         }
         transform.position = Vector3.MoveTowards(transform.position, target, speed);
@@ -58,5 +64,14 @@ public class WanderEnemy : Enemy {
         Vector3 randomPosition = gridPositions[randomIndex];
         gridPositions.RemoveAt(randomIndex);          //avoid get same position
         return randomPosition;
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Vector3 backDirection = (player.transform.position - transform.position).normalized * force;
+            player.GetComponent<PlayerController>().TakeDamage(attack, backDirection);
+        }
     }
 }

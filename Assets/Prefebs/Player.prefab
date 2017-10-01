@@ -23,9 +23,10 @@ GameObject:
   - component: {fileID: 50247820568780706}
   - component: {fileID: 61633827382551308}
   - component: {fileID: 114061199216627324}
+  - component: {fileID: 95269600576876204}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1788240354359756}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 24.12, y: 9.65, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -50,19 +51,19 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1788240354359756}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 0.1
+  m_LinearDrag: 0.05
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!61 &61633827382551308
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -77,17 +78,34 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 2.53, y: 3.98}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!95 &95269600576876204
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1788240354359756}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 13928d40aeac89e4080b5b99c44377e5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114061199216627324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,6 +118,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  normalBulletUp: {fileID: 1406771603095896, guid: f64786df478c50f4aa82b1da08f2f176,
+    type: 2}
+  normalBulletDown: {fileID: 1157875992692664, guid: 34ad62dca70fedc4ca3edd0898546b34,
+    type: 2}
+  normalBulletLeft: {fileID: 1166072664543182, guid: 42be39c80c2d6a2439e1b6a7e71ad61d,
+    type: 2}
+  normalBulletRight: {fileID: 1961554884422170, guid: aac5c2aa786fee947a5df87f253ced62,
+    type: 2}
+  ultraBulletUp: {fileID: 1902382922094498, guid: 28aa2203e2316aa4190133c4dea85fef,
+    type: 2}
+  ultraBulletDown: {fileID: 1902382922094498, guid: df206d8604453bb44a276f62e37f8b8e,
+    type: 2}
+  ultraBulletLeft: {fileID: 1902382922094498, guid: 78c0f45605fbc5149a2a7044b81f5d2c,
+    type: 2}
+  ultraBulletRight: {fileID: 1902382922094498, guid: 42f9257efcc89a24892696c27d2cceb5,
+    type: 2}
+  health: 0
+  backspeed: 1
+  force: {x: -5, y: 0, z: 0}
+  backTime: 0.5
+  isUltra: 0
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerHealth: 3
+  currentHeart: {fileID: 0}
+  ultras:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  currentUltra: {fileID: 0}
+  ultraNum: 3
+  coolDown: 20
+  fillingUltra: {fileID: 0}
+  ultraSlider: {fileID: 0}
 --- !u!212 &212244221180195366
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -129,10 +183,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1767920713
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: bffa091e3c99b624a8aaed10a9e2da89, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

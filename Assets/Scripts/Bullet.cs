@@ -46,7 +46,6 @@ public class Bullet : MonoBehaviour {
             other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
             Destroy(this.gameObject);
         }
-
         if (other.gameObject.tag == "Wall")
         {
             Destroy(this.gameObject);

@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 
     public float speed;
-    public GameObject normalBullet;
+    public GameObject normalBulletUp;
+    public GameObject normalBulletDown;
+    public GameObject normalBulletLeft;
+    public GameObject normalBulletRight;
     public GameObject ultraBulletUp;
     public GameObject ultraBulletDown;
     public GameObject ultraBulletLeft;
@@ -18,6 +21,7 @@ public class PlayerController : MonoBehaviour {
     public float backTime;
     bool isBack = false;
     public bool isUltra = false;
+    public GameObject ultraStatus;
 
     public GameObject[] hearts;
     public int playerHealth = 3;
@@ -30,9 +34,12 @@ public class PlayerController : MonoBehaviour {
     public float coolDown = 5.0f;
     public GameObject fillingUltra;
     public GameObject ultraSlider;
+
+    private Animator animator;
     // Use this for initialization
     void Start ()
     {
+        animator = GetComponent<Animator>();
         currentHeart = hearts[playerHealth - 1];
         currentUltra = ultras[2];
     }
@@ -85,23 +92,29 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKey(KeyCode.W))
         {
             this.transform.position += new Vector3(0.0f, speed * Time.deltaTime);
+            animator.SetTrigger("CharacterRun");
         }
 
         if (Input.GetKey(KeyCode.S))
         {
             this.transform.position += new Vector3(0.0f, -speed * Time.deltaTime);
+            animator.SetTrigger("CharacterRun");
         }
 
 
         if (Input.GetKey(KeyCode.A))
         {
             this.transform.position += new Vector3(-speed * Time.deltaTime, 0.0f);
+            this.transform.localScale = new Vector3(-0.5f, 0.5f,0.5f);
+            animator.SetTrigger("CharacterRun");
         }
 
 
         if (Input.GetKey(KeyCode.D))
         {
             this.transform.position += new Vector3(speed * Time.deltaTime, 0.0f);
+            this.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            animator.SetTrigger("CharacterRun");
         }
     }
 
@@ -109,23 +122,29 @@ public class PlayerController : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            GameObject bullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
+            GameObject bullet = Instantiate(normalBulletUp, transform.position, normalBulletUp.transform.rotation);
             bullet.GetComponent<Bullet>().direction = 1;
+            animator.SetTrigger("CharacterAttack");
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            GameObject bullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
+            GameObject bullet = Instantiate(normalBulletDown, transform.position, normalBulletDown.transform.rotation);
             bullet.GetComponent<Bullet>().direction = 2;
+            animator.SetTrigger("CharacterAttack");
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            GameObject bullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
+            this.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+            GameObject bullet = Instantiate(normalBulletLeft, transform.position, normalBulletLeft.transform.rotation);
             bullet.GetComponent<Bullet>().direction = 3;
+            animator.SetTrigger("CharacterAttack");
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            GameObject bullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
+            this.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            GameObject bullet = Instantiate(normalBulletRight, transform.position, normalBulletRight.transform.rotation);
             bullet.GetComponent<Bullet>().direction = 4;
+            animator.SetTrigger("CharacterAttack");
         }
     }
 
@@ -135,24 +154,28 @@ public class PlayerController : MonoBehaviour {
         {
             GameObject bullet = Instantiate(ultraBulletUp, transform.position, Quaternion.identity);
             bullet.GetComponent<UltraBullet>().direction = 1;
+            animator.SetTrigger("CharacterAttack");
             ChangeUltraUI();
         }
         if (Input.GetKeyDown(KeyCode.DownArrow) && ultraNum > 0)
         {
             GameObject bullet = Instantiate(ultraBulletDown, transform.position, Quaternion.identity);
             bullet.GetComponent<UltraBullet>().direction = 2;
+            animator.SetTrigger("CharacterAttack");
             ChangeUltraUI();
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) && ultraNum > 0)
         {
             GameObject bullet = Instantiate(ultraBulletLeft, transform.position, Quaternion.identity);
             bullet.GetComponent<UltraBullet>().direction = 3;
+            animator.SetTrigger("CharacterAttack");
             ChangeUltraUI();
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) && ultraNum > 0)
         {
             GameObject bullet = Instantiate(ultraBulletRight, transform.position, Quaternion.identity);
             bullet.GetComponent<UltraBullet>().direction = 4;
+            animator.SetTrigger("CharacterAttack");
             ChangeUltraUI();
         }
         
@@ -160,7 +183,6 @@ public class PlayerController : MonoBehaviour {
 
     public void TakeDamage(int loss, Vector3 backDirection)
     {
-        health -= loss;
         isBack = true;
         GetComponent<Rigidbody2D>().velocity = backDirection;
         Invoke("Stop", backTime);
@@ -180,13 +202,13 @@ public class PlayerController : MonoBehaviour {
         if (isUltra)
         {
             isUltra = false;
-            //UI
+            ultraStatus.SetActive(false);
 
         }
         else
         {
             isUltra = true;
-            //
+            ultraStatus.SetActive(true);
         }
     }
     void Dead()

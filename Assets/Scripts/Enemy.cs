@@ -10,12 +10,15 @@ public class Enemy : MonoBehaviour {
     public int attack;
     public float force;
     public bool canBeDestory = false;
-
+    public bool isPixel = false;
+    public Sprite pixel;
+    public Vector3 scale;
 
     public List<GameObject> changedGround = new List<GameObject>();
 
     void Awake()
     {
+        scale = transform.localScale;
         player = GameObject.FindGameObjectWithTag("Player");
         changedGround.Clear();
     }
@@ -23,6 +26,10 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (transform.position.x < player.transform.position.x)
+            transform.localScale = new Vector3(scale.x,scale.y);
+        if (transform.position.x > player.transform.position.x)
+            transform.localScale = new Vector3(-scale.x,scale.y);
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
     }
 
@@ -31,13 +38,10 @@ public class Enemy : MonoBehaviour {
         health -= loss;
         if (health <= 0)
         {
+            isPixel = true;
             canBeDestory = true;
-            //for (int i = 0; i < changedGround.Count; i++)
-            //{
-            //    changedGround[i].GetComponent<Ground>().ChangeToOriginal();
-            //}
-            //GameManager.instance.enemyCount--;
-            //Destroy(gameObject);
+            gameObject.GetComponent<SpriteRenderer>().sprite = pixel;
+            gameObject.GetComponent<Animator>().enabled = false;
         }
     }
     
@@ -56,7 +60,8 @@ public class Enemy : MonoBehaviour {
 
     public void ChangeGround(GameObject ground)
     {
-        changedGround.Add(ground);
+        if(!isPixel)
+            changedGround.Add(ground);
     }
 
     void OnCollisionEnter2D(Collision2D other)
